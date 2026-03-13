@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+// S'assure de supprimer le '/' final s'il est présent dans la variable d'environnement pour éviter "url//login"
+const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
 
 function App() {
   // ==================== STATES ====================
