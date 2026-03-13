@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "http://localhost:5000"; // Modifier si l'API est déployée
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function App() {
   // ==================== STATES ====================

@@ -194,16 +194,21 @@ app.delete("/api/members/:id", verifyToken, (req, res) => {
   }
 });
 
-// ================= SERVER =================
-app.listen(PORT, () => {
-  console.log(`✅ Serveur en écoute sur le port ${PORT}`);
-  console.log(`📌 Routes disponibles:`);
-  console.log(`   - GET  /api`);
-  console.log(`   - POST /register`);
-  console.log(`   - POST /login`);
-  console.log(`   - GET  /profile (sécurisée)`);
-  console.log(`   - GET  /api/members (sécurisée)`);
-  console.log(`   - GET  /api/members/:id (sécurisée)`);
-  console.log(`   - POST /api/members (sécurisée)`);
-  console.log(`   - DELETE /api/members/:id (sécurisée)`);
-});
+// ================= SERVER FOR LOCAL DEV vs EXPORT FOR VERCEL =================
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`✅ Serveur en écoute sur le port ${PORT}`);
+    console.log(`📌 Routes disponibles:`);
+    console.log(`   - GET  /api`);
+    console.log(`   - POST /register`);
+    console.log(`   - POST /login`);
+    console.log(`   - GET  /profile (sécurisée)`);
+    console.log(`   - GET  /api/members (sécurisée)`);
+    console.log(`   - GET  /api/members/:id (sécurisée)`);
+    console.log(`   - POST /api/members (sécurisée)`);
+    console.log(`   - DELETE /api/members/:id (sécurisée)`);
+  });
+}
+
+// L'export est indispensable pour que Vercel "serverless functions" puisse exploiter Express
+module.exports = app;
